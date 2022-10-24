@@ -1,16 +1,14 @@
 package peaksoft;
-
 import org.junit.Assert;
 import org.junit.Test;
+import peaksoft.dao.UserDaoHibernateImpl;
 import peaksoft.model.User;
+import peaksoft.service.HibarnateServiceImpl;
 import peaksoft.service.UserService;
 import peaksoft.service.UserServiceImpl;
-
 import java.util.List;
-
 public class UserServiceTest {
-
-    private final UserService userService = new UserServiceImpl();
+    private final HibarnateServiceImpl userService =  new HibarnateServiceImpl();
 
     private final String testName = "Kanat";
     private final String testLastName = "Subanov";
@@ -25,7 +23,6 @@ public class UserServiceTest {
             Assert.fail("При тестировании удаления таблицы произошло исключение\n" + e);
         }
     }
-
     @Test
     public void createUsersTable() {
         try {
@@ -35,14 +32,12 @@ public class UserServiceTest {
             Assert.fail("При тестировании создания таблицы пользователей произошло исключение\n" + e.getMessage());
         }
     }
-
     @Test
     public void saveUser() {
         try {
             userService.dropUsersTable();
             userService.createUsersTable();
             userService.saveUser(testName, testLastName, testAge);
-
             User user = userService.getAllUsers().get(0);
 
             if (!testName.equals(user.getName())
@@ -51,12 +46,10 @@ public class UserServiceTest {
             ) {
                 Assert.fail("User был некорректно добавлен в базу данных");
             }
-
         } catch (Exception e) {
             Assert.fail("Во время тестирования сохранения пользователя произошло исключение\n" + e);
         }
     }
-
     @Test
     public void removeUserById() {
         try {
