@@ -3,17 +3,12 @@ import org.junit.Assert;
 import org.junit.Test;
 import peaksoft.dao.UserDaoHibernateImpl;
 import peaksoft.model.User;
-import peaksoft.service.HibarnateServiceImpl;
-import peaksoft.service.UserService;
-import peaksoft.service.UserServiceImpl;
 import java.util.List;
 public class UserServiceTest {
-    private final HibarnateServiceImpl userService =  new HibarnateServiceImpl();
-
+    private final UserDaoHibernateImpl userService =  new UserDaoHibernateImpl();
     private final String testName = "Kanat";
     private final String testLastName = "Subanov";
     private final byte testAge = 23;
-
     @Test
     public void dropUsersTable() {
         try {
@@ -39,7 +34,6 @@ public class UserServiceTest {
             userService.createUsersTable();
             userService.saveUser(testName, testLastName, testAge);
             User user = userService.getAllUsers().get(0);
-
             if (!testName.equals(user.getName())
                     || !testLastName.equals(user.getLastName())
                     || testAge != user.getAge()

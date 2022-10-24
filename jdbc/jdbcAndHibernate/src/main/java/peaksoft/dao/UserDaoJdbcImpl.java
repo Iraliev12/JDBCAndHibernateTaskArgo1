@@ -2,11 +2,9 @@ package peaksoft.dao;
 
 import peaksoft.model.User;
 import peaksoft.util.Util;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
 public class UserDaoJdbcImpl implements UserDao {
     public UserDaoJdbcImpl() {
     }
